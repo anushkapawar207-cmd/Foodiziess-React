@@ -1,3 +1,4 @@
+
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -10,10 +11,17 @@ import Signup from "./pages/Signup";
 import Favorites from "./pages/Favorites";
 import RecipeDetails from "./pages/RecipeDetails";
 
+import FoodSpace from "./pages/FoodSpace";
+import FoodProfile from "./pages/FoodProfile";
+import MealPlanner from "./pages/MealPlanner";
+import FoodSuggestions from "./pages/FoodSuggestions";
+import Nutrition from "./pages/Nutrition";
+
 import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
 import ManageRecipes from "./pages/admin/ManageRecipes";
 import Users from "./pages/admin/Users";
+import Analytics from "./pages/admin/Analytics";
 
 function App() {
   return (
@@ -28,6 +36,14 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/recipe/:id" element={<RecipeDetails />} />
 
+        {/* My Food Space */}
+        <Route path="/food-space" element={<FoodSpace />} />
+        <Route path="/food-profile" element={<FoodProfile />} />
+        <Route path="/meal-planner" element={<MealPlanner />} />
+        <Route path="/food-suggestions" element={<FoodSuggestions />} />
+        <Route path="/nutrition" element={<Nutrition />} />
+
+        {/* Admin */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/recipes" element={<ManageRecipes />} />
@@ -41,4 +57,3 @@ function App() {
 }
 
 export default App;
-import Analytics from "./pages/admin/Analytics";
