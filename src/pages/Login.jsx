@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -32,34 +33,51 @@ function Login() {
   }
 
   return (
-    <div className="page">
-      <h1>Welcome Back!</h1>
+    <div className="auth-page">
+      <div className="auth-card">
 
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
+        <div className="auth-visual">
+          <h2>Good Food.<br />Good Mood. 💜</h2>
+          <p>
+            Your next favourite recipe is waiting for you.
+            Sign in and discover something delicious today!
+          </p>
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
-        />
+        <div className="auth-form-panel">
+          <h1>Welcome Back!</h1>
+          <p className="auth-subtitle">
+            Login to continue your delicious journey.
+          </p>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+          <form className="auth-form" onSubmit={handleLogin}>
+            <input
+              type="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
 
-        <button type="submit">Login</button>
-      </form>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
 
-      <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
+            {error && <p className="auth-error">{error}</p>}
+
+            <button type="submit">Login to Foodiziess →</button>
+          </form>
+
+          <p className="auth-switch">
+            Don't have an account? <Link to="/signup">Sign Up</Link>
+          </p>
+        </div>
+
+      </div>
     </div>
   );
 }

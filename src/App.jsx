@@ -32,6 +32,7 @@ function App() {
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/recipes" element={<ManageRecipes />} />
         <Route path="/admin/users" element={<Users />} />
+        <Route path="/admin/analytics" element={<Analytics />} />
       </Routes>
 
       <Footer />
@@ -40,3 +41,4 @@ function App() {
 }
 
 export default App;
+import Analytics from "./pages/admin/Analytics";

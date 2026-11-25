@@ -1,6 +1,6 @@
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 
 function Signup() {
   const navigate = useNavigate();
@@ -23,7 +23,8 @@ function Signup() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
     const existingUser = users.find(
-      (user) => user.email.toLowerCase() === email.trim().toLowerCase()
+      (user) =>
+        user.email.toLowerCase() === email.trim().toLowerCase()
     );
 
     if (existingUser) {
@@ -41,58 +42,76 @@ function Signup() {
     users.push(newUser);
 
     localStorage.setItem("users", JSON.stringify(users));
-console.log("Saved users:", localStorage.getItem("users"));
+
     alert("Account created successfully! Please log in 💜");
     navigate("/login");
   }
 
   return (
-    <div className="page">
-      <h1>Create Your Account</h1>
+    <div className="auth-page">
+      <div className="auth-card">
 
-      <form onSubmit={handleSignup}>
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          required
-        />
+        <div className="auth-visual">
+          <h2>Join the Foodiziess Family! 💜</h2>
+          <p>
+            Discover recipes, explore new flavours and
+            find inspiration for every craving.
+            Your delicious journey starts here!
+          </p>
+        </div>
 
-        <input
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
+        <div className="auth-form-panel">
+          <h1>Create Account</h1>
+          <p className="auth-subtitle">
+            Sign up and start exploring delicious recipes.
+          </p>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          minLength={6}
-          required
-        />
+          <form className="auth-form" onSubmit={handleSignup}>
+            <input
+              type="text"
+              placeholder="Full Name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              required
+            />
 
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
-          minLength={6}
-          required
-        />
+            <input
+              type="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+            <input
+              type="password"
+              placeholder="Create Password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              minLength={6}
+              required
+            />
 
-        <button type="submit">Sign Up</button>
-      </form>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)}
+              minLength={6}
+              required
+            />
 
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+            {error && <p className="auth-error">{error}</p>}
+
+            <button type="submit">Create My Account →</button>
+          </form>
+
+          <p className="auth-switch">
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
+        </div>
+
+      </div>
     </div>
   );
 }
