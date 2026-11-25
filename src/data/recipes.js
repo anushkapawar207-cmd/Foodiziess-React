@@ -86,6 +86,27 @@ const defaultRecipes = [
   }
 ];
 
+// Fix image paths for local development and deployment
+function getImagePath(image) {
+  if (!image) return "";
+
+  if (
+    image.startsWith("http://") ||
+    image.startsWith("https://") ||
+    image.startsWith("data:")
+  ) {
+    return image;
+  }
+
+  let cleanPath = image.replace(/^\/+/, "");
+
+  if (cleanPath === "images/fried-rice.jpg") {
+    cleanPath = "images/veg-friedrice.jpg";
+  }
+
+  return `${import.meta.env.BASE_URL}${cleanPath}`;
+}
+
 export function getRecipes() {
   const savedRecipes = localStorage.getItem("recipes");
 
@@ -96,13 +117,7 @@ export function getRecipes() {
       if (Array.isArray(parsedRecipes) && parsedRecipes.length > 0) {
         return parsedRecipes.map((recipe) => ({
           ...recipe,
-          image:
-            recipe.image === "images/fried-rice.jpg" ||
-            recipe.image === "/images/fried-rice.jpg"
-              ? "/images/veg-friedrice.jpg"
-              : recipe.image?.startsWith("/")
-                ? recipe.image
-                : `/${recipe.image}`
+          image: getImagePath(recipe.image)
         }));
       }
     } catch (error) {
@@ -112,5 +127,8 @@ export function getRecipes() {
 
   localStorage.setItem("recipes", JSON.stringify(defaultRecipes));
 
-  return defaultRecipes;
+  return defaultRecipes.map((recipe) => ({
+    ...recipe,
+    image: getImagePath(recipe.image)
+  }));
 }

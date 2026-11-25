@@ -7,7 +7,7 @@ import "./styles/legacy.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/Foodiziess-React">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>
